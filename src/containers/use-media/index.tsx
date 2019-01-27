@@ -6,7 +6,7 @@ import {
   ImageWrapper,
   ImageGroup,
   ImageContainer
-} from '../../commons/image-grid';
+} from '../../common/image-grid';
 
 const UseMedia = () => {
   const columnCount = useMedia(
