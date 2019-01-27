@@ -1,28 +1,59 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled from '@emotion/styled';
+import useMedia from './hooks/use-media';
+import data from './data/images';
+import { any } from 'prop-types';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  & > img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
-}
+`;
 
-export default App;
+export default function App() {
+  const columnCount = useMedia(
+    ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
+    [5, 4, 3],
+    2
+  );
+
+  let columnHeights = new Array(columnCount).fill(0);
+  let columns: any[] = [];
+  type ItemColumn = {
+    height: number;
+    width: number;
+    image: string;
+  };
+  data.forEach((item: ItemColumn) => {
+    const shortColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+    columns[shortColumnIndex].push(item);
+    columnHeights[shortColumnIndex] += item.height;
+  });
+
+  return (
+    <div className="App">
+      <div className="columns is-mobile">
+        {columns.map(column => (
+          <div className="column">
+            {column.map((item: any) => (
+              <div
+                className="image-container"
+                style={{
+                  // Size image container to aspect ratio of image
+                  paddingTop: (item.height / item.width) * 100 + '%'
+                }}>
+                <img src={item.image} alt="" />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
