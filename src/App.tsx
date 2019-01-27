@@ -1,4 +1,5 @@
 import React from 'react';
+import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import useMedia from './hooks/use-media';
 import data from './data/images';
@@ -14,6 +15,27 @@ const ImageContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+  }
+`;
+
+const ImageGroup = styled.div`
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0.75rem;
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  margin-top: -0.75rem;
+  &:last-child {
+    margin-bottom: -0.75rem;
+  }
+  &:not(:last-child) {
+    margin-bottom: calc(1.5rem - #{0.75rem});
   }
 `;
 
@@ -34,10 +56,18 @@ const App = () => {
   });
 
   return (
-    <div className="App">
-      <div className="columns is-mobile">
+    <>
+      <Global
+        styles={css`
+          * {
+            padding: 0;
+            margin: 0;
+          }
+        `}
+      />
+      <ImageWrapper>
         {columns.map(column => (
-          <div className="column">
+          <ImageGroup>
             {column.map((item: any) => (
               <ImageContainer
                 height={item.height}
@@ -49,10 +79,10 @@ const App = () => {
                 <img src={item.image} alt="" />
               </ImageContainer>
             ))}
-          </div>
+          </ImageGroup>
         ))}
-      </div>
-    </div>
+      </ImageWrapper>
+    </>
   );
 };
 
