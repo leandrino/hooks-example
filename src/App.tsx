@@ -2,12 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import useMedia from './hooks/use-media';
 import data from './data/images';
-import { any } from 'prop-types';
+import { IDataImages } from './interfaces/images';
 
 const ImageContainer = styled.div`
+  margin-bottom: 1.5rem;
+  padding-top: ${(props: any) => (props.height / props.width) * 100 + '%'};
   position: relative;
   width: 100%;
-  margin-bottom: 1.5rem;
   & > img {
     width: 100%;
     position: absolute;
@@ -16,21 +17,17 @@ const ImageContainer = styled.div`
   }
 `;
 
-export default function App() {
+const App = () => {
   const columnCount = useMedia(
     ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
     [5, 4, 3],
     2
   );
 
-  let columnHeights = new Array(columnCount).fill(0);
-  let columns: any[] = [];
-  type ItemColumn = {
-    height: number;
-    width: number;
-    image: string;
-  };
-  data.forEach((item: ItemColumn) => {
+  let columnHeights: any[] = new Array(columnCount).fill(0);
+  let columns: any[] = new Array(columnCount).fill(0).map(() => []);
+
+  data.forEach((item: IDataImages) => {
     const shortColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
     columns[shortColumnIndex].push(item);
     columnHeights[shortColumnIndex] += item.height;
@@ -42,18 +39,21 @@ export default function App() {
         {columns.map(column => (
           <div className="column">
             {column.map((item: any) => (
-              <div
-                className="image-container"
+              <ImageContainer
+                height={item.height}
+                width={item.width}
                 style={{
                   // Size image container to aspect ratio of image
                   paddingTop: (item.height / item.width) * 100 + '%'
                 }}>
                 <img src={item.image} alt="" />
-              </div>
+              </ImageContainer>
             ))}
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default App;

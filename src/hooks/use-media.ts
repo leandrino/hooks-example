@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { any } from 'prop-types';
 
-export default function useMedia(queries: any, values: any, defaultValue: any) {
-  const match = () => {
+export default function useMedia(
+  queries: string[],
+  values: number[],
+  defaultValue: number
+) {
+  const match: any = () => {
     const query: any = queries.findIndex((q: any) => matchMedia(q).matches);
     return values[query] || defaultValue;
   };
@@ -10,7 +13,7 @@ export default function useMedia(queries: any, values: any, defaultValue: any) {
   const [value, set] = useState(match);
 
   useEffect(() => {
-    const handler = () => set(match);
+    const handler: any = () => set(match);
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
   }, []);
