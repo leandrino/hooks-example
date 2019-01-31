@@ -1,7 +1,7 @@
-import React from 'react';
-import { Global, css } from '@emotion/core';
-import UseMedia from './containers/use-media';
-import { AppBarWrapper, AppBarButton } from './common/app-bar';
+import React from "react";
+import { Global, css } from "@emotion/core";
+import UseMedia from "./containers/use-media";
+import { AppBarWrapper, AppBarButton } from "./common/app-bar";
 
 const App = () => {
   return (
