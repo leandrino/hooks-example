@@ -1,22 +1,22 @@
-import React from 'react';
-import { IDataImages } from '../../interfaces/images';
-import data from '../../data/images';
-import useMedia from '../../hooks/use-media';
+import React from "react";
+import { IDataImages } from "../../interfaces/images";
+import data from "../../data/images";
+import useMedia from "../../hooks/use-media";
 import {
   ImageWrapper,
   ImageGroup,
   ImageContainer
-} from '../../common/image-grid';
+} from "../../common/image-grid";
 
 const UseMedia = () => {
   const columnCount = useMedia(
-    ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
+    ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
     [5, 4, 3],
     2
   );
 
-  let columnHeights: any[] = new Array(columnCount).fill(0);
-  let columns: any[] = new Array(columnCount).fill(0).map(() => []);
+  const columnHeights: any[] = new Array(columnCount).fill(0);
+  const columns: any[] = new Array(columnCount).fill(0).map(() => []);
 
   data.forEach((item: IDataImages) => {
     const shortColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
@@ -26,13 +26,14 @@ const UseMedia = () => {
 
   return (
     <ImageWrapper>
-      {columns.map((column: any[], index: number) => (
-        <ImageGroup key={`image-group-${index}`}>
-          {column.map((item: IDataImages, index: number) => (
+      {columns.map((column: any[], columnsIndex: number) => (
+        <ImageGroup key={`image-group-${columnsIndex}`}>
+          {column.map((item: IDataImages, columnIndex: number) => (
             <ImageContainer
-              key={`image-container-${index}`}
+              key={`image-container-${columnIndex}`}
               height={item.height}
-              width={item.width}>
+              width={item.width}
+            >
               <img src={item.image} alt="" />
             </ImageContainer>
           ))}
