@@ -1,5 +1,7 @@
 # Hooks example
 
+[![CircleCI](https://circleci.com/gh/leandrino/hooks-example/tree/master.svg?style=svg)](https://circleci.com/gh/leandrino/hooks-example/tree/master)
+
 this is a repo with hooks examples like [useHooks.com](https://usehooks.com) but writing in TypeScript!
 
 ## Getting starter
