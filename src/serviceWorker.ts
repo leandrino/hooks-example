@@ -20,12 +20,12 @@ const isLocalhost = Boolean(
     )
 );
 
-interface Config {
+interface IConfig {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 }
 
-export function register(config?: Config) {
+export function register(config?: IConfig) {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(
@@ -53,7 +53,7 @@ export function register(config?: Config) {
   }
 }
 
-function registerValidSW(swUrl: string, config?: Config) {
+function registerValidSW(swUrl: string, config?: IConfig) {
   navigator.serviceWorker.register(swUrl).then(registration => {
     registration.onupdatefound = () => {
       const installingWorker = registration.installing;
@@ -79,7 +79,7 @@ function registerValidSW(swUrl: string, config?: Config) {
   });
 }
 
-function checkValidServiceWorker(swUrl: string, config?: Config) {
+function checkValidServiceWorker(swUrl: string, config?: IConfig) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl).then(response => {
     // Ensure service worker exists, and that we really are getting a JS file.
