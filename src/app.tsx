@@ -32,7 +32,11 @@ const App = () => {
       />
       <AppBarWrapper>
         <AppBarButton />
-        useHooks with Typescript
+        <div>
+          inspired by <a href="https://usehooks.com">useHooks</a> with
+          Typescript -{" "}
+          <a href="https://github.com/leandrino/hooks-example">GitHub</a>
+        </div>
       </AppBarWrapper>
       <UseMedia />
     </>
