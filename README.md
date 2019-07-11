@@ -2,7 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/leandrino/hooks-example/tree/master.svg?style=svg)](https://circleci.com/gh/leandrino/hooks-example/tree/master)
 
-this is a repo with hooks examples like [useHooks.com](https://usehooks.com) but writing in TypeScript!
+This is a repo with hooks examples like [useHooks.com](https://usehooks.com) but writing in TypeScript!
+You can see examples in [react-typescript-hooks.netlify.com/](https://react-typescript-hooks.netlify.com/)
 
 ## Getting starter
 
