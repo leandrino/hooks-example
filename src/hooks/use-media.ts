@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export default function useMedia(
   queries: string[],
@@ -14,9 +14,9 @@ export default function useMedia(
 
   useEffect(() => {
     const handler: any = () => set(match);
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, []);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  });
 
   return value;
 }

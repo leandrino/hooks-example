@@ -1,14 +1,13 @@
-import styled, { StyledComponent } from "@emotion/styled";
+import styled from "@emotion/styled";
 
-export interface IPaddingTop {
+export interface IImageContainerProps {
   height: number;
   width: number;
 }
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<IImageContainerProps>`
   margin-bottom: 1.5rem;
-  padding-top: ${(props: IPaddingTop) =>
-    (props.height / props.width) * 100 + "%"};
+  padding-top: ${props => (props.height / props.width) * 100 + "%"};
   position: relative;
   width: 100%;
   & > img {
