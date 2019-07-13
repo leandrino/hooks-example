@@ -10,9 +10,15 @@ import {
 
 const UseMedia = () => {
   const columnCount = useMedia(
-    ["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 600px)"],
-    [5, 4, 3],
-    2
+    [
+      "(min-width: 1700px)",
+      "(min-width: 1500px)",
+      "(min-width: 1000px)",
+      "(min-width: 600px)",
+      "(min-width: 300px)"
+    ],
+    [7, 5, 4, 3, 2],
+    1
   );
 
   const columnHeights: any[] = new Array(columnCount).fill(0);
